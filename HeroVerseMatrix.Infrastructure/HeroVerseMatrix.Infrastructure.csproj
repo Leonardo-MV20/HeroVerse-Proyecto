@@ -217,7 +217,12 @@
     <Compile Include="Migrations\202610090602316_CrearHeroVerse.Designer.cs">
       <DependentUpon>202610090602316_CrearHeroVerse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202610211840318_ActualizarCasaMatrix.cs" />
+    <Compile Include="Migrations\202610211840318_ActualizarCasaMatrix.Designer.cs">
+      <DependentUpon>202610211840318_ActualizarCasaMatrix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Persistence\CasaMatrix\CasaMatrixRepository.cs" />
     <Compile Include="Persistence\Personaje\PersonajeRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -239,10 +244,11 @@
     <EmbeddedResource Include="Migrations\202610090602316_CrearHeroVerse.resx">
       <DependentUpon>202610090602316_CrearHeroVerse.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202610211840318_ActualizarCasaMatrix.resx">
+      <DependentUpon>202610211840318_ActualizarCasaMatrix.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Persistence\CasaMatrix\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
