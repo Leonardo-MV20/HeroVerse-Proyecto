@@ -1,0 +1,19 @@
+﻿
+@model HeroVerseMatrix.Web.ViewModels.Personajes.PersonajeViewModel
+@{ ViewBag.Title = "Detalle del personaje"; }
+<h2>Detalle del personaje</h2>
+@if (TempData["Exito"] != null)
+{<div class="alert alert-success">@TempData["Exito"]</div>}
+@if (TempData["Error"] != null)
+{<div class="alert alert-danger">@TempData["Error"]</div>}
+<dl class="row">
+    <dt class="col-sm-3">Nombre</dt>
+    <dd class="col-sm-9">@Model.Nombre</dd>
+    <dt class="col-sm-3">Casa matriz</dt>
+    <dd class="col-sm-9">@Model.CasaMatriz</dd>
+    <dt class="col-sm-3">Tipo</dt>
+    <dd class="col-sm-9">@(Model.EsHeroe ? "Héroe" : "Villano")</dd>
+</dl>
+@Html.ActionLink("Editar", "Editar", new { id = Model.Id }, new { @class = "btn btn-warning" })
+@Html.ActionLink("Eliminar", "Eliminar", new { id = Model.Id }, new { @class = "btn btn-danger" })
+@Html.ActionLink("Volver", "Index", null, new { @class = "btn btn-secondary" })

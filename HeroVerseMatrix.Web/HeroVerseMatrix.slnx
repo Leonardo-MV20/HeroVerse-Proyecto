@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="../HeroVerseMatrix.Application/HeroVerseMatrix.Application.csproj" Id="41212204-ca87-4e98-aad5-91dd57c4efa1" />
+  <Project Path="../HeroVerseMatrix.Domain/HeroVerseMatrix.Domain.csproj" Id="57b93c6e-d87d-46c9-96d6-247003c24747" />
+  <Project Path="../HeroVerseMatrix.Infrastructure/HeroVerseMatrix.Infrastructure.csproj" Id="82e8501c-5813-49e6-9873-b18a176750b9" />
+  <Project Path="HeroVerseMatrix.Web.csproj" Id="db59af2a-e43b-428d-809d-27a023c29424" />
+</Solution>
