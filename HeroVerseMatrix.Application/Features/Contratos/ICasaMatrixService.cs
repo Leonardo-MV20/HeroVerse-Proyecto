@@ -1,12 +1,14 @@
-﻿using System;
+﻿using HeroVerseMatrix.Application.Features.CasaMatrix;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HeroVerseMatrix.Application.Features.Contratos
 {
-    internal interface ICasaMatrixService
+    public interface ICasaMatrixService
     {
         Task<IEnumerable<CasaMatrixDto>> GetAll();
 

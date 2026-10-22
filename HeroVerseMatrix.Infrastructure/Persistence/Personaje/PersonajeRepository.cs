@@ -12,7 +12,7 @@ using PersonajeEntity = HeroVerseMatrix.Domain.Entities.Personaje;
 
 namespace HeroVerseMatrix.Infrastructure.Persistence.Personaje
 {
-    internal class PersonajeRepository : IPersonajeRepository
+    public class PersonajeRepository : IPersonajeRepository
     {
         private readonly HeroVerseContext _dbContext;
         private readonly IMapper _mapper;

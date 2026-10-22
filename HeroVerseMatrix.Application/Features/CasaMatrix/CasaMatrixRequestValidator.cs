@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FluentValidation;
 
 namespace HeroVerseMatrix.Application.Features.CasaMatrix
 {
@@ -12,9 +8,7 @@ namespace HeroVerseMatrix.Application.Features.CasaMatrix
         {
             RuleFor(r => r.Nombre)
                 .NotEmpty().WithMessage("El nombre de la casa matriz es obligatorio.")
-                .Length(2, 100).WithMessage("El nombre debe tener entre 2 y 100 caracteres.");
-
-            RuleFor(r => r.Descripcion).NotEmpty().WithMessage("La descripción es obligatoria.");
+                .MaximumLength(100).WithMessage("El nombre admite hasta 100 caracteres.");
         }
     }
 }

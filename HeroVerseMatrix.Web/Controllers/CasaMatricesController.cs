@@ -1,16 +1,21 @@
-﻿using System;
+﻿using AutoMapper;
+using HeroVerseMatrix.Application.Features.CasaMatrix;
+using HeroVerseMatrix.Application.Features.Contratos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Threading.Tasks;
+using System.Web.Mvc;
+using HeroVerseMatrix.Web.ViewModels;
 
 namespace HeroVerseMatrix.Web.Controllers
 {
     public class CasaMatricesController : Controller
     {
-        private readonly IPersonajeService _service;
+        private readonly ICasaMatrixService _service;
         private readonly IMapper _mapper;
 
-        public CasaMatricesController(IPersonajeService service, IMapper mapper)
+        public CasaMatricesController(ICasaMatrixService service, IMapper mapper)
         {
             this._service = service;
             this._mapper = mapper;
@@ -30,7 +35,7 @@ namespace HeroVerseMatrix.Web.Controllers
         {
             if(!id.HasValue|| id.Value == Guid.Empty)
             {
-                return new HttpsStatusCodeResult(400, "Bad Request: ID is required.");
+                return new HttpStatusCodeResult(400, "Bad Request: ID is required.");
             }
 
             var casa = await _service.GetById(id.Value);
@@ -42,14 +47,6 @@ namespace HeroVerseMatrix.Web.Controllers
             var model = _mapper.Map<CasaMatrixViewModel>(casa);
             return View(model);
         }
-
-
-        [HttpGet]
-        public ActionResult Crear()
-        {
-            return View(new CrearCasaMatrizViewModel());
-        }
-
 
         //---------------- editar get
         [HttpGet]
@@ -75,6 +72,7 @@ namespace HeroVerseMatrix.Web.Controllers
 
         //----- post del editar
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> Editar(Guid id, ActualizarCasaMatrizViewModel model)
         {
             if (id == Guid.Empty || id != model.Id)
@@ -108,7 +106,10 @@ namespace HeroVerseMatrix.Web.Controllers
             }
             catch (Exception)
             {
-                ModelState.AddModelError(string.Empty, $"An error occurred while updating the personaje: {ex.Message}");
+                ModelState.AddModelError(
+                    string.Empty,
+                    "Ocurrió un error al actualizar la casa matriz.");
+
                 return View(model);
             }
         }
@@ -137,6 +138,7 @@ namespace HeroVerseMatrix.Web.Controllers
         // --------------post eliminar
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<ActionResult> ConfirmarEliminar(Guid id)
         {
             if (id == Guid.Empty)
@@ -165,21 +167,22 @@ namespace HeroVerseMatrix.Web.Controllers
             }
             catch (Exception)
             {
-                TempData["Error"] = "An error occurred while deleting the personaje";
+                TempData["Error"] = "Ocurrió un error al eliminar la casa matriz.";
                 return RedirectToAction("Index");
             }
         }
 
-
+        //---------------- crear get
         [HttpGet]
         public ActionResult Crear()
         {
             return View(new CrearCasaMatrizViewModel());
         }
 
+        //---------------- crear post
         [HttpPost]
-        public async Task<ActionResult> Crear(
-            CrearCasaMatrizViewModel model)
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Crear(CrearCasaMatrizViewModel model)
         {
             if (!ModelState.IsValid)
             {

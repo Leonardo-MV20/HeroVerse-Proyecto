@@ -2,9 +2,13 @@
 using Autofac.Integration.Mvc;
 using AutoMapper;
 using FluentValidation;
+using HeroVerseMatrix.Application.Features.CasaMatrix;
+using HeroVerseMatrix.Application.Features.Contratos;
 using HeroVerseMatrix.Application.Features.Personaje;
 using HeroVerseMatrix.Application.Features.Personaje.Contratos;
 using HeroVerseMatrix.Infrastructure.Data;
+using HeroVerseMatrix.Infrastructure.Persistence.CasaMatrix;
+using HeroVerseMatrix.Infrastructure.Persistence.Personaje;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,9 +33,9 @@ namespace HeroVerseMatrix.Web.App_Start
                 .As<IMapper>()
                 .SingleInstance();
 
-            builder.RegisterType<IPersonajeRepository>()
-                .As<IPersonajeRepository>()
-                .InstancePerRequest();
+            builder.RegisterType<PersonajeRepository>()
+            .As<IPersonajeRepository>()
+            .InstancePerRequest();
 
             builder.RegisterType<PersonajeService>()
                 .As<IPersonajeService>()
@@ -39,6 +43,18 @@ namespace HeroVerseMatrix.Web.App_Start
 
             builder.RegisterType<PersonajeRequestValidator>()
                 .As<IValidator<PersonajeRequest>>()
+                .InstancePerRequest();
+
+            builder.RegisterType<CasaMatrixRepository>()
+            .As<ICasaMatrixRepository>()
+            .InstancePerRequest();
+
+            builder.RegisterType<CasaMatrixService>()
+                .As<ICasaMatrixService>()
+                .InstancePerRequest();
+
+            builder.RegisterType<CasaMatrixRequestValidator>()
+                .As<IValidator<CasaMatrixRequest>>()
                 .InstancePerRequest();
 
             var container = builder.Build();
