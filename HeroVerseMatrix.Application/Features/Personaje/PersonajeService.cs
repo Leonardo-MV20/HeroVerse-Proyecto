@@ -26,8 +26,7 @@ namespace HeroVerseMatrix.Application.Features.Personaje
             if (personaje == null)
             {
                 var validationResult = new ValidationResult();
-                validationResult.Errors
-                    .Add(new ValidationFailure("Id", "El personaje no existe."));
+                validationResult.Errors.Add(new ValidationFailure("Id", "El personaje no existe."));
                 return validationResult;
             }
 

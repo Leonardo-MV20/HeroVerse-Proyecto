@@ -111,7 +111,10 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Features\CasaMatrix\CasaMatrixDto.cs" />
     <Compile Include="Features\CasaMatrix\CasaMatrixRequest.cs" />
+    <Compile Include="Features\CasaMatrix\CasaMatrixRequestValidator.cs" />
+    <Compile Include="Features\CasaMatrix\CasaMatrixService.cs" />
     <Compile Include="Features\Contratos\ICasaMatrixRepository.cs" />
+    <Compile Include="Features\Contratos\ICasaMatrixService.cs" />
     <Compile Include="Features\Contratos\IPersonajeRepository.cs" />
     <Compile Include="Features\Contratos\IPersonajeService.cs" />
     <Compile Include="Features\Personaje\PersonajeDetalle.cs" />
