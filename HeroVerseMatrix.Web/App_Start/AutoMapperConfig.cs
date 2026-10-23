@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HeroVerseMatrix.Application.Mappings;
+using HeroVerseMatrix.Web.Mappings;
 
 public static class AutoMapperConfig
 {
@@ -10,6 +11,7 @@ public static class AutoMapperConfig
         var configuration = new MapperConfiguration(config =>
         {
             config.AddProfile<ApplicationMappingProfile>();
+            config.AddProfile<WebMappingProfile>();
         }, null);
 
         configuration.AssertConfigurationIsValid();

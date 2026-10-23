@@ -6,6 +6,8 @@ using System.Web;
 using HeroVerseMatrix.Application.Features.Personaje;
 using HeroVerseMatrix.Web.ViewModels.Personajes;
 using HeroVerseMatrix.Domain.Entities;
+using HeroVerseMatrix.Application.Features.CasaMatrix;
+using HeroVerseMatrix.Web.ViewModels.CasaMatrix;
 
 namespace HeroVerseMatrix.Web.Mappings
 {
@@ -30,6 +32,14 @@ namespace HeroVerseMatrix.Web.Mappings
             CreateMap<EditarPersonajeFormModel, PersonajeRequest>()
                 .ForMember(dest => dest.TipoPersonaje,
                             opt => opt.MapFrom(src => src.EsHeroe ? TipoPersonaje.Heroe : TipoPersonaje.Villano));
+
+            // CasaMatrix Mappings
+            CreateMap<CasaMatrixDto, CasaMatrixViewModel>();
+            CreateMap<CasaMatrixDto, CasaMatrixDetalleViewModel>();
+            CreateMap<CasaMatrixDto, ActualizarCasaMatrixViewModel>();
+
+            CreateMap<CrearCasaMatrixViewModel, CasaMatrixRequest>();
+            CreateMap<ActualizarCasaMatrixViewModel, CasaMatrixRequest>();
         }
     }
 }

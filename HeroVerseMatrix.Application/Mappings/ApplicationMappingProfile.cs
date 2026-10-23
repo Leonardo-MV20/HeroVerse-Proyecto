@@ -1,11 +1,13 @@
 ﻿using AutoMapper;
 using HeroVerseMatrix.Application.Features.Personaje;
+using HeroVerseMatrix.Application.Features.CasaMatrix;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PersonajeEntity = HeroVerseMatrix.Domain.Entities.Personaje;
+using CasaMatrizEntity = HeroVerseMatrix.Domain.Entities.CasaMatriz;
 
 namespace HeroVerseMatrix.Application.Mappings
 {
@@ -35,6 +37,11 @@ namespace HeroVerseMatrix.Application.Mappings
                 .ForMember(dest => dest.AlterEgo_Apellido, src => src.MapFrom(s => s.AlterEgo.Apellido))
                 .ForMember(dest => dest.CasaMatrizId, src => src.MapFrom(s => s.CasaMatrix.Id))
                 .ForMember(dest => dest.CasaMatriz, src => src.MapFrom(s => s.CasaMatrix.Nombre));
+
+            // CasaMatrix mappings
+            CreateMap<CasaMatrizEntity, CasaMatrixDto>();
+            CreateMap<CasaMatrixRequest, CasaMatrizEntity>()
+                .ForMember(dest => dest.Id, src => src.Ignore());
         }
     }
 }
