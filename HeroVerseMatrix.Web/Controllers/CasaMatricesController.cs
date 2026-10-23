@@ -45,7 +45,7 @@ namespace HeroVerseMatrix.Web.Controllers
             {
                 return HttpNotFound("Casa Matrix not found.");
             }
-            var model = _mapper.Map<CasaMatrixViewModel>(casa);
+            var model = _mapper.Map<CasaMatrixDetalleViewModel>(casa);
             return View(model);
         }
 

@@ -46,8 +46,8 @@ namespace HeroVerseMatrix.Web.App_Start
                 .InstancePerRequest();
 
             builder.RegisterType<CasaMatrixRepository>()
-            .As<ICasaMatrixRepository>()
-            .InstancePerRequest();
+                .As<ICasaMatrixRepository>()
+                .InstancePerRequest();
 
             builder.RegisterType<CasaMatrixService>()
                 .As<ICasaMatrixService>()

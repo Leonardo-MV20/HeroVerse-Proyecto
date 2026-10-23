@@ -26,5 +26,10 @@ namespace HeroVerseMatrix.Web.Controllers
 
             return View();
         }
+
+        public ActionResult Prueba()
+        {
+            return Content("Funciona");
+        }
     }
 }

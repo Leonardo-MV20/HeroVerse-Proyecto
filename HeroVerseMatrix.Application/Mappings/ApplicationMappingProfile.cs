@@ -24,13 +24,13 @@ namespace HeroVerseMatrix.Application.Mappings
 
             // Personaje mappings: Request -> Entity
             CreateMap<PersonajeRequest, PersonajeEntity>()
-                .ForMember(dest => dest.Id, src => src.Ignore())
-                .ForMember(dest => dest.Tipo, src => src.MapFrom(s => s.TipoPersonaje))
-                .ForMember(dest => dest.AlterEgo.Nombre, src => src.MapFrom(s => s.AlterEgoNombre))
-                .ForMember(dest => dest.AlterEgo.Apellido, src => src.MapFrom(s => s.AlterEgoApellidos))
-                .ForMember(dest => dest.CasaMatrix, src => src.Ignore())
-                .ForMember(dest => dest.Imagen, src => src.Ignore())
-                .ForMember(dest => dest.ImagenContentType, src => src.Ignore());
+               .ForMember(dest => dest.Id, src => src.Ignore())
+               .ForMember(dest => dest.Tipo, src => src.MapFrom(s => s.TipoPersonaje))
+               .ForPath(dest => dest.AlterEgo.Nombre, src => src.MapFrom(s => s.Nombre))
+               .ForPath(dest => dest.AlterEgo.Apellido, src => src.MapFrom(s => s.AlterEgoApellidos))
+               .ForMember(dest => dest.CasaMatrix, src => src.Ignore())
+               .ForMember(dest => dest.Imagen, src => src.Ignore())
+               .ForMember(dest => dest.ImagenContentType, src => src.Ignore());
 
             CreateMap<PersonajeEntity, PersonajeDetalle>()
                 .ForMember(dest => dest.TipoPersonaje, src => src.MapFrom(s => s.Tipo))
@@ -40,10 +40,10 @@ namespace HeroVerseMatrix.Application.Mappings
                 .ForMember(dest => dest.CasaMatriz, src => src.MapFrom(s => s.CasaMatrix.Nombre));
 
             // CasaMatrix mappings
-            CreateMap<CasaMatrix, CasaMatrixDto>();
-            CreateMap<CasaMatrixDto, CasaMatrix>();
-            CreateMap<CasaMatrixRequest, CasaMatrix>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore());
+            CreateMap<CasaMatrixEntity, CasaMatrixDto>();
+            CreateMap<CasaMatrixRequest, CasaMatrixEntity>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore())
+                .ForMember(dest => dest.Personajes, opt => opt.Ignore());
         }
     }
 }

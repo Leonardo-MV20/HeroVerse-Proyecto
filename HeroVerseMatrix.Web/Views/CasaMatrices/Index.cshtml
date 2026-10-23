@@ -1,0 +1,46 @@
+﻿
+@model IEnumerable<HeroVerseMatrix.Web.ViewModels.CasaMatrix.CasaMatrixViewModel>
+
+@{
+    ViewBag.Title = "Casas Matrix";
+}
+
+<h2>Casas Matrix</h2>
+
+<p>
+    @Html.ActionLink(
+    "Nueva Casa Matrix",
+    "Crear",
+    null,
+    new { @class = "btn btn-primary" }
+)
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Descripción
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Editar", new { id = item.Id }) |
+                @Html.ActionLink("Detalles", "Detalle", new { id = item.Id }) |
+                @Html.ActionLink("Eliminar", "Eliminar", new { id = item.Id })
+            </td>
+        </tr>
+    }
+</table>

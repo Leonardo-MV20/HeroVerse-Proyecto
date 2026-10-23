@@ -12,7 +12,7 @@ public static class AutoMapperConfig
         {
             config.AddProfile<ApplicationMappingProfile>();
             config.AddProfile<WebMappingProfile>();
-        }, null);
+        });
 
         configuration.AssertConfigurationIsValid();
         Mapper = configuration.CreateMapper();

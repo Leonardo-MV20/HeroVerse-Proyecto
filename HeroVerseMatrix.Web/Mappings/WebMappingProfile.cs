@@ -27,18 +27,27 @@ namespace HeroVerseMatrix.Web.Mappings
                 .ForMember(dest => dest.AlterEgoApellido,
                             opt => opt.MapFrom(src => src.AlterEgo_Apellido))
                 .ForMember(dest => dest.EsHeroe,
-                            opt => opt.MapFrom(src => src.TipoPersonaje == TipoPersonaje.Heroe));
+                            opt => opt.MapFrom(src => src.TipoPersonaje == TipoPersonaje.Heroe))
+                .ForMember(dest => dest.CasaMatrizOptions, opt => opt.Ignore());
 
             CreateMap<EditarPersonajeFormModel, PersonajeRequest>()
                 .ForMember(dest => dest.TipoPersonaje,
-                            opt => opt.MapFrom(src => src.EsHeroe ? TipoPersonaje.Heroe : TipoPersonaje.Villano));
+                            opt => opt.MapFrom(src => src.EsHeroe ? TipoPersonaje.Heroe : TipoPersonaje.Villano))
+                .ForMember(dest => dest.AlterEgoApellidos,
+                            opt => opt.MapFrom(src => src.AlterEgoApellido))
+                .ForMember(dest => dest.CasaMatrixId,
+                            opt => opt.MapFrom(src => src.CasaMatrizId));
 
             // CasaMatrix Mappings
             CreateMap<CasaMatrixDto, CasaMatrixViewModel>();
+
             CreateMap<CasaMatrixDto, CasaMatrixDetalleViewModel>();
+
             CreateMap<CasaMatrixDto, ActualizarCasaMatrixViewModel>();
 
-            CreateMap<CrearCasaMatrixViewModel, CasaMatrixRequest>();
+            CreateMap<CrearCasaMatrixViewModel, CasaMatrixRequest>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
+
             CreateMap<ActualizarCasaMatrixViewModel, CasaMatrixRequest>();
         }
     }
