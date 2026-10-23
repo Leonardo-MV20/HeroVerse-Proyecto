@@ -7,7 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using PersonajeEntity = HeroVerseMatrix.Domain.Entities.Personaje;
-using CasaMatrizEntity = HeroVerseMatrix.Domain.Entities.CasaMatriz;
+using CasaMatrixEntity = HeroVerseMatrix.Domain.Entities.CasaMatrix;
+using HeroVerseMatrix.Domain.Entities;
 
 namespace HeroVerseMatrix.Application.Mappings
 {
@@ -39,9 +40,10 @@ namespace HeroVerseMatrix.Application.Mappings
                 .ForMember(dest => dest.CasaMatriz, src => src.MapFrom(s => s.CasaMatrix.Nombre));
 
             // CasaMatrix mappings
-            CreateMap<CasaMatrizEntity, CasaMatrixDto>();
-            CreateMap<CasaMatrixRequest, CasaMatrizEntity>()
-                .ForMember(dest => dest.Id, src => src.Ignore());
+            CreateMap<CasaMatrix, CasaMatrixDto>();
+            CreateMap<CasaMatrixDto, CasaMatrix>();
+            CreateMap<CasaMatrixRequest, CasaMatrix>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore());
         }
     }
 }

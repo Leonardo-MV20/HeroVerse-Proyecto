@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using HeroVerseMatrix.Web.ViewModels;
+using HeroVerseMatrix.Web.ViewModels.CasaMatrix;
 
 namespace HeroVerseMatrix.Web.Controllers
 {
@@ -64,7 +65,7 @@ namespace HeroVerseMatrix.Web.Controllers
                 return HttpNotFound("Casa matriz not found.");
             }
 
-            var model =_mapper.Map<ActualizarCasaMatrizViewModel>(casa);
+            var model =_mapper.Map<ActualizarCasaMatrixViewModel>(casa);
 
             return View(model);
         }
@@ -73,7 +74,7 @@ namespace HeroVerseMatrix.Web.Controllers
         //----- post del editar
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Editar(Guid id, ActualizarCasaMatrizViewModel model)
+        public async Task<ActionResult> Editar(Guid id, ActualizarCasaMatrixViewModel model)
         {
             if (id == Guid.Empty || id != model.Id)
             {
@@ -129,7 +130,7 @@ namespace HeroVerseMatrix.Web.Controllers
             {
                 return HttpNotFound("Casa matriz not found");
             }
-            var model =_mapper.Map<CasaMatrizDetalleViewModel>(casa);
+            var model =_mapper.Map<CasaMatrixDetalleViewModel>(casa);
 
             return View(model);
         }
@@ -176,13 +177,13 @@ namespace HeroVerseMatrix.Web.Controllers
         [HttpGet]
         public ActionResult Crear()
         {
-            return View(new CrearCasaMatrizViewModel());
+            return View(new CrearCasaMatrixViewModel());
         }
 
         //---------------- crear post
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Crear(CrearCasaMatrizViewModel model)
+        public async Task<ActionResult> Crear(CrearCasaMatrixViewModel model)
         {
             if (!ModelState.IsValid)
             {
