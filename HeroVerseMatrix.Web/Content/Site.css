@@ -1,20 +1,155 @@
-﻿/* Set padding to keep content from hitting the edges */
+﻿/* ===== HeroVerse Matrix - estilos globales ===== */
+:root {
+    --hv-primario: #4c3bcf;
+    --hv-primario-oscuro: #2d2377;
+    --hv-fondo: #f5f6fb;
+    --hv-heroe: #198754;
+    --hv-villano: #b02a37;
+}
+
+body {
+    background-color: var(--hv-fondo);
+}
+
+/* Espacio para que el contenido no quede pegado a los bordes */
 .body-content {
-    margin-top: 15px;
     padding-left: 15px;
     padding-right: 15px;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+/* ----- Navegación ----- */
+.navbar-heroverse {
+    background: linear-gradient(90deg, var(--hv-primario-oscuro), var(--hv-primario));
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+.navbar-heroverse .nav-link {
+    border-radius: .375rem;
+    padding-left: .85rem;
+    padding-right: .85rem;
+}
+
+.navbar-heroverse .nav-link:hover {
+    background-color: rgba(255, 255, 255, .12);
+}
+
+.navbar-heroverse .nav-link.active {
+    background-color: rgba(255, 255, 255, .22);
+    font-weight: 600;
+}
+
+.footer-heroverse {
+    border-top: 1px solid #dee2e6;
+    background-color: #fff;
+}
+
+/* ----- Encabezado de página (título + botón de acción) ----- */
+.page-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .75rem;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+}
+
+.page-header h1 {
+    margin-bottom: 0;
+}
+
+/* ----- Tarjetas y tablas ----- */
+.card-heroverse {
+    border: 0;
+    border-radius: .75rem;
+    box-shadow: 0 2px 10px rgba(30, 30, 80, .08);
+}
+
+.table-heroverse thead th {
+    background-color: #eceefb;
+    color: var(--hv-primario-oscuro);
+    white-space: nowrap;
+}
+
+.table-heroverse td,
+.table-heroverse th {
+    vertical-align: middle;
+}
+
+.acciones {
+    white-space: nowrap;
+}
+
+/* ----- Etiquetas de tipo de personaje ----- */
+.badge-heroe {
+    background-color: var(--hv-heroe);
+    color: #fff;
+}
+
+.badge-villano {
+    background-color: var(--hv-villano);
+    color: #fff;
+}
+
+/* ----- Estado sin datos ----- */
+.estado-vacio {
+    padding: 3rem 1rem;
+    background-color: #fff;
+    border: 2px dashed #ced4da;
+    border-radius: .75rem;
+}
+
+.estado-vacio-icono {
+    font-size: 2.5rem;
+    line-height: 1;
+    color: var(--hv-primario);
+    margin-bottom: .5rem;
+}
+
+/* ----- Validaciones visuales ----- */
+/* El resumen de validación no debe verse cuando no hay errores */
+.validation-summary-valid {
+    display: none;
+}
+
+.validation-summary-errors ul {
+    margin-bottom: 0;
+    padding-left: 1.25rem;
+}
+
+.input-validation-error {
+    border-color: #dc3545 !important;
+    background-color: #fff6f6;
+}
+
+.field-validation-error {
+    display: block;
+    margin-top: .25rem;
+    color: #dc3545;
+    font-size: .875em;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+/* ----- Formularios -----
+   (se eliminó la regla antigua que limitaba input/select/textarea a 280px) */
+.form-heroverse {
+    max-width: 720px;
+}
+
+/* ----- Detalle (lista de datos) ----- */
+.detalle dt {
+    color: #6c757d;
+    font-weight: 600;
+}
+
+/* ----- Pantallas pequeñas ----- */
+@media (max-width: 576px) {
+    .page-header .btn {
+        width: 100%;
+    }
+
+    .acciones .btn {
+        margin-bottom: .25rem;
+    }
 }

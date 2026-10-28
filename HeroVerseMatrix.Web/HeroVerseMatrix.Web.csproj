@@ -1801,11 +1801,17 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_Alertas.cshtml" />
+    <Content Include="Views\Shared\_EstadoVacio.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Personajes\Index.cshtml" />
     <Content Include="Views\Personajes\Detalle.cshtml" />
+    <Content Include="Views\Personajes\Crear.cshtml" />
+    <Content Include="Views\Personajes\Editar.cshtml" />
+    <Content Include="Views\Personajes\Eliminar.cshtml" />
+    <Content Include="Views\Personajes\_CamposPersonaje.cshtml" />
     <Content Include="Views\CasaMatrices\Index.cshtml" />
     <Content Include="Views\CasaMatrices\Crear.cshtml" />
     <Content Include="Views\CasaMatrices\Editar.cshtml" />

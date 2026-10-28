@@ -1,33 +1,40 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+@{
+    ViewBag.Title = "Inicio";
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+<section class="p-4 p-md-5 mb-4 text-white rounded-3 navbar-heroverse">
+    <h1 class="display-5 fw-bold">HeroVerse Matrix</h1>
+    <p class="lead mb-0">
+        Administre las casas matrices y los personajes del universo: heroes, villanos y sus alter egos.
+    </p>
+</section>
+
+<div class="row g-4">
+    <section class="col-md-6" aria-labelledby="tituloCasas">
+        <div class="card card-heroverse h-100">
+            <div class="card-body p-4 d-flex flex-column">
+                <h2 id="tituloCasas" class="h4">Casas Matrix</h2>
+                <p class="text-muted flex-grow-1">
+                    Registre, consulte y organice las casas matrices a las que pertenecen los personajes.
+                </p>
+                <div>
+                    @Html.ActionLink("Ver casas matrix", "Index", "CasaMatrices", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
     </section>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
-</main>
+    <section class="col-md-6" aria-labelledby="tituloPersonajes">
+        <div class="card card-heroverse h-100">
+            <div class="card-body p-4 d-flex flex-column">
+                <h2 id="tituloPersonajes" class="h4">Personajes</h2>
+                <p class="text-muted flex-grow-1">
+                    Cree y edite personajes, asígnelos a una casa matriz y defina si son heroes o villanos.
+                </p>
+                <div>
+                    @Html.ActionLink("Ver personajes", "Index", "Personajes", null, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

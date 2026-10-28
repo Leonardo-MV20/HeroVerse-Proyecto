@@ -1,35 +1,59 @@
-﻿
-
 @model IEnumerable<HeroVerseMatrix.Web.ViewModels.Personajes.PersonajeViewModel>
-@{ ViewBag.Title = "Personajes"; }
 
-<div class="d-flex justify-content-between align-items-center mb-3">
-    <h2>Personajes</h2>
+@{
+    ViewBag.Title = "Personajes";
+}
+
+<div class="page-header">
+    <h1 class="h2">Personajes</h1>
     @Html.ActionLink("Nuevo personaje", "Crear", null, new { @class = "btn btn-primary" })
 </div>
 
-@if (TempData["Exito"] != null)
-{<div class="alert alert-success">@TempData["Exito"]</div>}
-@if (TempData["Error"] != null)
-{<div class="alert alert-danger">@TempData["Error"]</div>}
-
-<table class="table table-striped table-hover">
-    <thead><tr><th>Nombre</th><th>Casa matriz</th><th>Tipo</th><th>Acciones</th></tr></thead>
-    <tbody>
-        @foreach (var personaje in Model)
-        {
-            <tr>
-                <td>@personaje.Nombre</td>
-                <td>@personaje.CasaMatriz</td>
-                <td>@(personaje.EsHeroe ? "Héroe" : "Villano")</td>
-                <td>
-                    @Html.ActionLink("Ver", "Detalle", new { id = personaje.Id }, new { @class = "btn btn-sm btn-info" })
-                    @Html.ActionLink("Editar", "Editar", new { id = personaje.Id }, new { @class = "btn btn-sm btn-warning" })
-                    @Html.ActionLink("Eliminar", "Eliminar", new { id = personaje.Id }, new { @class = "btn btn-sm btn-danger" })
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
 @if (!Model.Any())
-{<div class="alert alert-info">Aún no hay personajes registrados.</div>}
+{
+    @Html.Partial("_EstadoVacio", new ViewDataDictionary {
+        { "Titulo", "Aun no hay personajes registrados" },
+        { "Mensaje", "Cree el primer personaje para empezar a poblar el universo." },
+        { "AccionTexto", "Nuevo personaje" },
+        { "Accion", "Crear" },
+        { "Controlador", "Personajes" }
+    })
+}
+else
+{
+    <div class="card card-heroverse">
+        <div class="table-responsive">
+            <table class="table table-hover table-heroverse mb-0">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Alter ego</th>
+                        <th>Casa matriz</th>
+                        <th>Tipo</th>
+                        <th class="text-end">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var personaje in Model)
+                    {
+                        <tr>
+                            <td class="fw-semibold">@personaje.Nombre</td>
+                            <td>@personaje.AlterEgo</td>
+                            <td>@personaje.CasaMatriz</td>
+                            <td>
+                                <span class="badge @(personaje.EsHeroe ? "badge-heroe" : "badge-villano")">
+                                    @(personaje.EsHeroe ? "heroe" : "Villano")
+                                </span>
+                            </td>
+                            <td class="text-end acciones">
+                                @Html.ActionLink("Ver", "Detalle", new { id = personaje.Id }, new { @class = "btn btn-sm btn-outline-primary" })
+                                @Html.ActionLink("Editar", "Editar", new { id = personaje.Id }, new { @class = "btn btn-sm btn-outline-secondary" })
+                                @Html.ActionLink("Eliminar", "Eliminar", new { id = personaje.Id }, new { @class = "btn btn-sm btn-outline-danger" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}

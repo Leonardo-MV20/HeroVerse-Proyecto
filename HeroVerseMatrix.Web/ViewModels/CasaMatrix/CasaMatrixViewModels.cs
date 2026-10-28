@@ -27,8 +27,8 @@ namespace HeroVerseMatrix.Web.ViewModels.CasaMatrix
         [Display(Name = "Nombre")]
         public string Nombre { get; set; }
 
-        [StringLength(250, ErrorMessage = "La descripción no puede superar los 250 caracteres.")]
-        [Display(Name = "Descripción")]
+        [StringLength(250, ErrorMessage = "La descripcion no puede superar los 250 caracteres.")]
+        [Display(Name = "descripcion")]
         public string Descripcion { get; set; }
     }
 
@@ -43,8 +43,8 @@ namespace HeroVerseMatrix.Web.ViewModels.CasaMatrix
         [Display(Name = "Nombre")]
         public string Nombre { get; set; }
 
-        [StringLength(250, ErrorMessage = "La descripción no puede superar los 250 caracteres.")]
-        [Display(Name = "Descripción")]
+        [StringLength(250, ErrorMessage = "La descripcion no puede superar los 250 caracteres.")]
+        [Display(Name = "descripcion")]
         public string Descripcion { get; set; }
     }
 }

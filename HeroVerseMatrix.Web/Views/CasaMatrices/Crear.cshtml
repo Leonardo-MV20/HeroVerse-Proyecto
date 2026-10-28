@@ -1,41 +1,39 @@
-﻿
 @model HeroVerseMatrix.Web.ViewModels.CasaMatrix.CrearCasaMatrixViewModel
 
 @{
     ViewBag.Title = "Nueva Casa Matrix";
 }
 
-<h2>Nueva Casa Matrix</h2>
+<div class="page-header">
+    <h1 class="h2">Nueva Casa Matrix</h1>
+</div>
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div class="card card-heroverse form-heroverse">
+    <div class="card-body p-4">
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Nombre, new { @class = "form-label" })
+                @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control", maxlength = 100, autocomplete = "off" })
+                @Html.ValidationMessageFor(model => model.Nombre)
+            </div>
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.Nombre)
-        @Html.TextBoxFor(model => model.Nombre, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
+            <div class="mb-4">
+                @Html.LabelFor(model => model.Descripcion, new { @class = "form-label" })
+                @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control", rows = 4, maxlength = 250 })
+                @Html.ValidationMessageFor(model => model.Descripcion)
+            </div>
+
+            <div class="d-flex flex-wrap gap-2">
+                <button type="submit" class="btn btn-primary">Guardar</button>
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        }
     </div>
-
-    <div class="form-group">
-        @Html.LabelFor(model => model.Descripcion)
-        @Html.TextAreaFor(model => model.Descripcion, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.Descripcion, "", new { @class = "text-danger" })
-    </div>
-
-    <br />
-
-    <button type="submit" class="btn btn-primary">Guardar</button>
-
-    @Html.ActionLink(
-        "Cancelar",
-        "Index",
-        null,
-        new { @class = "btn btn-default" }
-    )
-}
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

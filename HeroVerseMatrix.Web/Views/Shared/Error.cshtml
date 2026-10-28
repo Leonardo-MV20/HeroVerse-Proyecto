@@ -1,13 +1,11 @@
-﻿<!DOCTYPE html>
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
-</head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
-</body>
-</html>
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="estado-vacio text-center">
+    <div class="estado-vacio-icono" aria-hidden="true">&#9888;</div>
+    <h1 class="h4">Algo salió mal</h1>
+    <p class="text-muted">Ocurrió un error al procesar su solicitud. Intente de nuevo en unos momentos.</p>
+    @Html.ActionLink("Volver al inicio", "Index", "Home", null, new { @class = "btn btn-primary" })
+</div>

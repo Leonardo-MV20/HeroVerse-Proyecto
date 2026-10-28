@@ -1,0 +1,28 @@
+@*
+    Mensajes globales. Lee TempData y muestra una alerta por cada clave que tenga contenido.
+    Desde cualquier controller:  TempData["Exito"] = "...";  TempData["Error"] = "...";
+    Claves: Exito, Error, Advertencia, Info  (SuccessMessage se mantiene por compatibilidad).
+*@
+@{
+    var tipos = new[]
+    {
+        new { Clave = "Exito",        Clase = "success", Icono = "&#10003;" },
+        new { Clave = "SuccessMessage", Clase = "success", Icono = "&#10003;" },
+        new { Clave = "Error",        Clase = "danger",  Icono = "&#10007;" },
+        new { Clave = "Advertencia",  Clase = "warning", Icono = "&#9888;" },
+        new { Clave = "Info",         Clase = "info",    Icono = "&#8505;" }
+    };
+}
+
+@foreach (var tipo in tipos)
+{
+    var mensaje = TempData[tipo.Clave] as string;
+    if (!string.IsNullOrWhiteSpace(mensaje))
+    {
+        <div class="@("alert alert-" + tipo.Clase) alert-dismissible fade show d-flex align-items-center" role="alert">
+            <span class="me-2 fw-bold" aria-hidden="true">@Html.Raw(tipo.Icono)</span>
+            <div>@mensaje</div>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+        </div>
+    }
+}

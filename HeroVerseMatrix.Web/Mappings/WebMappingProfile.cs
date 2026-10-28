@@ -11,44 +11,53 @@ using HeroVerseMatrix.Web.ViewModels.CasaMatrix;
 
 namespace HeroVerseMatrix.Web.Mappings
 {
-    public class WebMappingProfile : Profile
-    {
-        public WebMappingProfile()
-        {
-            CreateMap<PersonajeDto, PersonajeViewModel>()
-                .ForMember(dest => dest.CasaMatriz,
-                            opt => opt.MapFrom(src => src.CasaMatrix))
-                .ForMember(dest => dest.EsHeroe,
-                            opt => opt.MapFrom(src => src.TipoPersonaje == TipoPersonaje.Heroe));
+	public class WebMappingProfile : Profile
+	{
+		public WebMappingProfile()
+		{
+			CreateMap<PersonajeDto, PersonajeViewModel>()
+				.ForMember(dest => dest.CasaMatriz,
+							opt => opt.MapFrom(src => src.CasaMatrix))
+				.ForMember(dest => dest.EsHeroe,
+							opt => opt.MapFrom(src => src.TipoPersonaje == TipoPersonaje.Heroe));
 
-            CreateMap<PersonajeDetalle, EditarPersonajeFormModel>()
-                .ForMember(dest => dest.AlterEgoNombre,
-                            opt => opt.MapFrom(src => src.AlterEgo_Nombre))
-                .ForMember(dest => dest.AlterEgoApellido,
-                            opt => opt.MapFrom(src => src.AlterEgo_Apellido))
-                .ForMember(dest => dest.EsHeroe,
-                            opt => opt.MapFrom(src => src.TipoPersonaje == TipoPersonaje.Heroe))
-                .ForMember(dest => dest.CasaMatrizOptions, opt => opt.Ignore());
+			CreateMap<PersonajeDetalle, EditarPersonajeFormModel>()
+				.ForMember(dest => dest.AlterEgoNombre,
+							opt => opt.MapFrom(src => src.AlterEgo_Nombre))
+				.ForMember(dest => dest.AlterEgoApellido,
+							opt => opt.MapFrom(src => src.AlterEgo_Apellido))
+				.ForMember(dest => dest.EsHeroe,
+							opt => opt.MapFrom(src => src.TipoPersonaje == TipoPersonaje.Heroe))
+				.ForMember(dest => dest.CasaMatrizOptions, opt => opt.Ignore());
 
-            CreateMap<EditarPersonajeFormModel, PersonajeRequest>()
-                .ForMember(dest => dest.TipoPersonaje,
-                            opt => opt.MapFrom(src => src.EsHeroe ? TipoPersonaje.Heroe : TipoPersonaje.Villano))
-                .ForMember(dest => dest.AlterEgoApellidos,
-                            opt => opt.MapFrom(src => src.AlterEgoApellido))
-                .ForMember(dest => dest.CasaMatrixId,
-                            opt => opt.MapFrom(src => src.CasaMatrizId));
+			CreateMap<EditarPersonajeFormModel, PersonajeRequest>()
+				.ForMember(dest => dest.TipoPersonaje,
+							opt => opt.MapFrom(src => src.EsHeroe ? TipoPersonaje.Heroe : TipoPersonaje.Villano))
+				.ForMember(dest => dest.AlterEgoApellidos,
+							opt => opt.MapFrom(src => src.AlterEgoApellido))
+				.ForMember(dest => dest.CasaMatrixId,
+							opt => opt.MapFrom(src => src.CasaMatrizId));
 
-            // CasaMatrix Mappings
-            CreateMap<CasaMatrixDto, CasaMatrixViewModel>();
+			CreateMap<CrearPersonajeFormModel, PersonajeRequest>()
+				.ForMember(dest => dest.Id, opt => opt.Ignore())
+				.ForMember(dest => dest.TipoPersonaje,
+							opt => opt.MapFrom(src => src.EsHeroe ? TipoPersonaje.Heroe : TipoPersonaje.Villano))
+				.ForMember(dest => dest.AlterEgoApellidos,
+							opt => opt.MapFrom(src => src.AlterEgoApellido))
+				.ForMember(dest => dest.CasaMatrixId,
+							opt => opt.MapFrom(src => src.CasaMatrizId));
 
-            CreateMap<CasaMatrixDto, CasaMatrixDetalleViewModel>();
+			// CasaMatrix Mappings
+			CreateMap<CasaMatrixDto, CasaMatrixViewModel>();
 
-            CreateMap<CasaMatrixDto, ActualizarCasaMatrixViewModel>();
+			CreateMap<CasaMatrixDto, CasaMatrixDetalleViewModel>();
 
-            CreateMap<CrearCasaMatrixViewModel, CasaMatrixRequest>()
-                .ForMember(dest => dest.Id, opt => opt.Ignore());
+			CreateMap<CasaMatrixDto, ActualizarCasaMatrixViewModel>();
 
-            CreateMap<ActualizarCasaMatrixViewModel, CasaMatrixRequest>();
-        }
-    }
+			CreateMap<CrearCasaMatrixViewModel, CasaMatrixRequest>()
+				.ForMember(dest => dest.Id, opt => opt.Ignore());
+
+			CreateMap<ActualizarCasaMatrixViewModel, CasaMatrixRequest>();
+		}
+	}
 }

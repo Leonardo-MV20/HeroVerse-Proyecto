@@ -1,49 +1,36 @@
-﻿
 @model HeroVerseMatrix.Web.ViewModels.CasaMatrix.CasaMatrixDetalleViewModel
 
 @{
     ViewBag.Title = "Eliminar Casa Matrix";
 }
 
-<h2>Eliminar Casa Matrix</h2>
+<div class="page-header">
+    <h1 class="h2">Eliminar Casa Matrix</h1>
+</div>
 
-<h3>¿Está seguro que desea eliminar esta Casa Matrix?</h3>
+<div class="card card-heroverse form-heroverse">
+    <div class="card-body p-4">
+        <div class="alert alert-warning" role="alert">
+            Esta seguro de que desea eliminar esta Casa Matrix? Si tiene personajes asociados, no podra eliminarse.
+        </div>
 
-<div>
-    <hr />
+        <dl class="row detalle mb-4">
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Nombre)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Nombre)</dd>
 
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
+            <dt class="col-sm-4">@Html.DisplayNameFor(model => model.Descripcion)</dt>
+            <dd class="col-sm-8">@Html.DisplayFor(model => model.Descripcion)</dd>
+        </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+        @using (Html.BeginForm("ConfirmarEliminar", "CasaMatrices", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.Id)
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
-    </dl>
-
-    @using (Html.BeginForm("ConfirmarEliminar", "CasaMatrices", FormMethod.Post))
-    {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.Id)
-
-        <button type="submit" class="btn btn-danger">
-            Eliminar
-        </button>
-
-        @Html.ActionLink(
-            "Cancelar",
-            "Index",
-            null,
-            new { @class = "btn btn-default" }
-        )
-    }
+            <div class="d-flex flex-wrap gap-2">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        }
+    </div>
 </div>

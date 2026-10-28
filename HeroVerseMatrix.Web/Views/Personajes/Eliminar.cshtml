@@ -1,0 +1,39 @@
+@model HeroVerseMatrix.Web.ViewModels.Personajes.PersonajeViewModel
+
+@{
+    ViewBag.Title = "Eliminar personaje";
+}
+
+<div class="page-header">
+    <h1 class="h2">Eliminar personaje</h1>
+</div>
+
+<div class="card card-heroverse form-heroverse">
+    <div class="card-body p-4">
+        <div class="alert alert-warning" role="alert">
+            Esta seguro de que desea eliminar este personaje? Esta accion no se puede deshacer.
+        </div>
+
+        <dl class="row detalle mb-4">
+            <dt class="col-sm-4">Nombre</dt>
+            <dd class="col-sm-8">@Model.Nombre</dd>
+
+            <dt class="col-sm-4">Alter ego</dt>
+            <dd class="col-sm-8">@Model.AlterEgo</dd>
+
+            <dt class="col-sm-4">Casa matriz</dt>
+            <dd class="col-sm-8">@Model.CasaMatriz</dd>
+        </dl>
+
+        @using (Html.BeginForm("ConfirmarEliminar", "Personajes", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(m => m.Id)
+
+            <div class="d-flex flex-wrap gap-2">
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+                @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        }
+    </div>
+</div>

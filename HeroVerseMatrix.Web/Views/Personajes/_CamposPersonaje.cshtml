@@ -1,0 +1,43 @@
+@model HeroVerseMatrix.Web.ViewModels.Personajes.PersonajeFormModelBase
+
+@{
+    var casas = Model.CasaMatrizOptions ?? Enumerable.Empty<SelectListItem>();
+}
+
+<div class="mb-3">
+    @Html.LabelFor(m => m.Nombre, new { @class = "form-label" })
+    @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", maxlength = 100, autocomplete = "off" })
+    @Html.ValidationMessageFor(m => m.Nombre)
+</div>
+
+<div class="mb-3">
+    @Html.LabelFor(m => m.CasaMatrizId, new { @class = "form-label" })
+    @Html.DropDownListFor(m => m.CasaMatrizId, casas, "-- Seleccione una casa matriz --", new { @class = "form-select" })
+    @Html.ValidationMessageFor(m => m.CasaMatrizId)
+    @if (!casas.Any())
+    {
+        <div class="form-text text-warning-emphasis">
+            No hay casas matrices registradas.
+            @Html.ActionLink("Cree una casa matriz", "Crear", "CasaMatrices") antes de agregar personajes.
+        </div>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-6 mb-3">
+        @Html.LabelFor(m => m.AlterEgoNombre, new { @class = "form-label" })
+        @Html.TextBoxFor(m => m.AlterEgoNombre, new { @class = "form-control", maxlength = 50, autocomplete = "off" })
+        @Html.ValidationMessageFor(m => m.AlterEgoNombre)
+    </div>
+    <div class="col-md-6 mb-3">
+        @Html.LabelFor(m => m.AlterEgoApellido, new { @class = "form-label" })
+        @Html.TextBoxFor(m => m.AlterEgoApellido, new { @class = "form-control", maxlength = 50, autocomplete = "off" })
+        @Html.ValidationMessageFor(m => m.AlterEgoApellido)
+    </div>
+</div>
+
+<div class="form-check form-switch mb-4">
+    @Html.CheckBoxFor(m => m.EsHeroe, new { @class = "form-check-input", role = "switch" })
+    @Html.LabelFor(m => m.EsHeroe, new { @class = "form-check-label" })
+    <div class="form-text">Si no esta marcado, el personaje se registra como villano.</div>
+</div>

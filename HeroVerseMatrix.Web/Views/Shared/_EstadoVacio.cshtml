@@ -1,0 +1,26 @@
+@*
+    Estado "sin datos". Uso:
+    @Html.Partial("_EstadoVacio", new ViewDataDictionary {
+        { "Titulo", "Aun no hay personajes" },
+        { "Mensaje", "Crea el primero para empezar." },
+        { "AccionTexto", "Nuevo personaje" }, { "Accion", "Crear" }, { "Controlador", "Personajes" } })
+*@
+@{
+    var titulo = ViewData["Titulo"] as string ?? "Sin datos";
+    var mensaje = ViewData["Mensaje"] as string;
+    var accionTexto = ViewData["AccionTexto"] as string;
+    var accion = ViewData["Accion"] as string;
+    var controlador = ViewData["Controlador"] as string;
+}
+<div class="estado-vacio text-center">
+    <div class="estado-vacio-icono" aria-hidden="true">&#9734;</div>
+    <h2 class="h5">@titulo</h2>
+    @if (!string.IsNullOrWhiteSpace(mensaje))
+    {
+        <p class="text-muted">@mensaje</p>
+    }
+    @if (!string.IsNullOrWhiteSpace(accion) && !string.IsNullOrWhiteSpace(accionTexto))
+    {
+        @Html.ActionLink(accionTexto, accion, controlador, null, new { @class = "btn btn-primary" })
+    }
+</div>
